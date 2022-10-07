@@ -1,0 +1,21 @@
+package baseClassPackage;
+
+public class ExcelDataProvider {
+	
+	public void testData(String excelPath,String sheetName) {
+		
+		ExcelUtils excel=new ExcelUtils(excelPath, sheetName);
+		
+		int rowCount=excel.getRowCount();
+		int colCount=excel.getColumnCount();
+		
+		for(int i=1;i<rowCount;i++) {
+			for(int j=0;j<colCount;i++) {
+				String cellData=excel.getCellDataString(i, j);
+				System.out.println(cellData);
+			}
+		}
+
+	}
+
+}

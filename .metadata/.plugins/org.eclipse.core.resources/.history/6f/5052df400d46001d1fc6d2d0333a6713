@@ -1,0 +1,18 @@
+package testRunnerPacakge;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import basePackage.BaseClass;
+
+public class TestRunner extends BaseClass
+{
+   @Test
+   public void amzonTest() {
+	   driver.get("https://www.amazon.com/");
+       String title=driver.getTitle();
+		System.out.println(title);
+//		Assert.assertEquals(title, "Classroom Management Tools & Resources - Google for Education");
+
+   }
+}

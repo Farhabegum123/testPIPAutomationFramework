@@ -1,0 +1,37 @@
+package pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class AmazonHomePage 
+{
+	 public WebDriver driver;
+		
+		public AmazonHomePage(WebDriver driver) {
+			this.driver=driver;
+			PageFactory.initElements(driver,this);
+		}
+		
+		@FindBy(xpath="//span[@class='a-button-inner']/span[contains(text(),'Don')]")
+		WebElement btnDontchnge;
+		
+		@FindBy(xpath="//div[@id='nav-tools']/a/span[contains(@class,'inner')]")
+		WebElement lnkLanguageChange;
+		
+		public void changeCountry() throws Exception {
+		 Actions a=new Actions(driver);
+		 try {
+		     a.doubleClick(btnDontchnge).build().perform();
+
+		 }
+			Thread.sleep(5000);
+			a.doubleClick(lnkLanguageChange).build().perform();
+			System.out.println("Clicked on change language");
+		}
+
+		
+
+}

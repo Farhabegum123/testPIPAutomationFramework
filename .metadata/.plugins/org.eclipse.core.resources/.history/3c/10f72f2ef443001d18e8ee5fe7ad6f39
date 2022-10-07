@@ -1,0 +1,40 @@
+package testRunnerPackage;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import baseClassPackage.BaseClass;
+import pages.GClassHomePage;
+import pages.GoogleHomePage;
+import pages.PeoplePage;
+import pages.SignInPage;
+import pages.ClassroomPage;
+
+public class Runner extends BaseClass
+{
+	@Test
+	public void googleTest() throws Exception {
+		GoogleHomePage goglepage=new GoogleHomePage(driver);
+		SignInPage sngpage=new SignInPage(driver);
+		GClassHomePage gclasspage=new GClassHomePage(driver);
+		ClassroomPage classrompage=new ClassroomPage(driver); 
+		PeoplePage peplePage=new PeoplePage(driver);
+			driver.get("https://classroom.google.com/");
+	         String title=driver.getTitle();
+			System.out.println(title);
+			Assert.assertEquals(title, "Classroom Management Tools & Resources - Google for Education");
+			goglepage.clickOnSignLogo();
+			goglepage.clickonGoogleClassroom();
+			sngpage.getWindowHandle();
+			System.out.println("Navigated to email account page");
+			sngpage.enterEmailId();
+			sngpage.enterPassword();
+			   sngpage.createClassIcon();
+				sngpage.clckCheckboxContinue();
+			   sngpage.createClassFields();	
+			   classrompage.clckAssgment();
+			   classrompage.createAssignment();
+			   classrompage.getWindowHandle();
+			   classrompage.selectDueDate();
+	}
+}

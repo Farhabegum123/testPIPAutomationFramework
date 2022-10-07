@@ -1,0 +1,104 @@
+package pages;
+
+import java.util.Iterator;
+import java.util.Set;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class AmazonSettingPage 
+{
+	 public WebDriver driver;
+		
+		public AmazonSettingPage(WebDriver driver) {
+			this.driver=driver;
+			PageFactory.initElements(driver,this);
+		}
+		
+		@FindBy(xpath="//span[@class='a-button-inner']/span[contains(text(),'Don')]")
+		WebElement btnDontchnge;
+		
+		@FindBy(xpath="//div[@id='nav-tools']/a/span[contains(@class,'inner')]")
+		WebElement lnkLanguageChange;
+		
+		@FindBy(xpath="(//span[@class='nav-text']//div[contains(text(),'Change country')])[1]")
+		WebElement lnkChangeCountry;
+		
+		@FindBy(xpath="//span[@class='a-button-inner']//span[contains(@class,'dropdown')]")
+		WebElement selectPrefrdCnty;
+		
+		@FindBy(xpath="//div[@class='a-popover-wrapper']//a[text()='India']")
+		WebElement slectIndia;
+		
+		@FindBy(xpath="//input[@class='a-button-input']")
+		WebElement btnWebsite;
+		
+		//@FindBy(xpath="//i[contains(@class,'dropdown')]")
+		@FindBy(xpath="//span[contains(@class,'declarative')]/span")
+		WebElement drpCurrencySetngs;
+		
+		@FindBy(xpath="//div[contains(@class,'declarative')]//li[@id='INR']")
+		WebElement chngtoIndia;
+		
+		@FindBy(xpath="//span[contains(text(),'Save Changes')]")
+		WebElement btnSaveChanges;
+		
+		public void changeCountrylange() throws Exception {
+		 Actions a=new Actions(driver);
+		 try {
+		     a.doubleClick(btnDontchnge).build().perform();
+			 System.out.println("dont change btn is visible and clicked");
+		 }
+		 catch(Exception e) {
+			 System.out.println("dont change btn is not visible");
+		 }
+			Thread.sleep(5000);
+			a.moveToElement(lnkLanguageChange).build().perform();
+			Thread.sleep(1000);
+			a.doubleClick(lnkChangeCountry).build().perform();
+			System.out.println("Clicked on change language");
+		}
+
+		public void changeCountryCurrency() throws Exception {
+			 Actions a=new Actions(driver);
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].click();", drpCurrencySetngs);
+	   //  a.doubleClick(drpCurrencySetngs).build().perform();	
+	     Thread.sleep(1000);
+	     a.doubleClick(chngtoIndia).build().perform();
+	     chngtoIndia.click();
+	     Thread.sleep(3000);
+	     a.doubleClick(btnSaveChanges).build().perform();
+		}
+
+		public void changeCountry() throws Exception {
+			selectPrefrdCnty.click();
+		     Thread.sleep(1000);
+			slectIndia.click();
+		     Thread.sleep(1000);
+			System.out.println("Successfully selected as India");
+		     btnWebsite.click();
+		     
+
+		}
+		public void getWindowHandle() throws Exception {
+			Set<String> windowsIds = driver.getWindowHandles();
+			Iterator<String> it = windowsIds.iterator();
+			String parentId = it.next();
+			String childId = it.next();
+			driver.switchTo().window(parentId);
+			System.out.println("Parent window id:" +parentId);
+			System.out.println("Parent window title: " + driver.getTitle());
+			driver.switchTo().window(childId);
+			System.out.println("Child window id:" +childId);
+			System.out.println("Child window title: " + driver.getTitle());
+			driver.switchTo().window(childId);
+			Thread.sleep(3000);
+		}
+		
+		
+}

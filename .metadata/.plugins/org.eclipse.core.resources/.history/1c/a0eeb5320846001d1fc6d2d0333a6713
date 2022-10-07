@@ -1,0 +1,12 @@
+package basePackage;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class baseClass {
+
+	 public void openBrowser() throws Exception {
+	     System.setProperty("webdriver.chrome.driver","C:\\Users\\farhana.begum\\pip_workSpace\\com.AutomationFrameworkAssesmnt\\drivers\\chromedriver.exe");
+		 driver=new ChromeDriver();
+		 driver.manage().window().maximize();
+
+}

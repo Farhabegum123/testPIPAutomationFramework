@@ -1,0 +1,52 @@
+package pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import junit.framework.Assert;
+
+public class CartPage 
+{
+	public WebDriver driver;
+	
+	public CartPage(WebDriver driver) {
+		this.driver=driver;
+		PageFactory.initElements(driver,this);
+	}
+	
+	@FindBy(xpath="//input[@id='add-to-cart-button']")
+	WebElement btnAddtoCart;
+	
+	@FindBy(xpath="//span[contains(@class,'medium-plus')]")
+	WebElement verifyAddedCart;
+	
+	@FindBy(xpath="(//div[contains(@class,'a-row')]//form//span[contains(text(),'Cart')])[1]")
+	WebElement btnCart;
+	
+	@FindBy(xpath="(//span[@class='a-truncate-cut'])[5]")
+	WebElement lnkProductTxt;
+	
+	 public void addProductndVerify() throws Exception {
+		 Thread.sleep(1000);
+		 btnAddtoCart.click();
+		 Thread.sleep(5000);
+		 boolean isElmtDisplayeed=verifyAddedCart.isDisplayed();
+		  Assert.assertTrue(isElmtDisplayeed);
+		  System.out.println("Successully displayed Added to cart");
+			 Thread.sleep(1000);
+	 }
+		 
+	 public void shoppingCart()  throws Exception  {
+		 btnCart.click();
+		 Thread.sleep(1000);
+		 lnkProductTxt.getText();
+	   System.out.println("Samsung product is been successfully Added to cart");
+	
+	 }
+		   
+	
+	
+	
+}

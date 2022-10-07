@@ -1,0 +1,167 @@
+package pages;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
+
+
+
+import junit.framework.Assert;
+
+public class GClassHomePage 
+{
+	 public static WebDriver driver;
+	   //WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(30));
+
+		
+		public GClassHomePage(WebDriver rdriver) {
+			 this.driver=rdriver;
+			PageFactory.initElements(driver,this);
+		}
+		
+		@FindBy(xpath="//div[contains(text(),'Announce')]")
+		WebElement lnkAnnouceClasss;
+		
+		@FindBy(xpath="//div[contains(@class,'editable')]")
+		WebElement txtAnnouceClasss;
+		
+		@FindBy(xpath="//div[contains(@guidedhelpid,'ScheduleDrop')]")
+		WebElement btpostdropdown;
+		
+		@FindBy(xpath="//div[text()='Schedule']")
+		WebElement btnSchedule;
+		
+		@FindBy(xpath="//span[text()='']")
+		WebElement btnforClander;
+		
+		@FindBy(xpath="//button[@title='Next month']")
+		WebElement btnNxtMont;
+		
+		@FindBy(xpath="//tbody[@role='grid']/tr[4]/td[7]")
+		WebElement slectDate;
+		
+		@FindBy(xpath="//input[@placeholder='Scheduled time']")
+		WebElement slectTime;
+		
+		@FindBy(xpath="(//span[text()='Schedule'])[2]")
+		WebElement slectSchedulebtn;
+		
+		//@FindBy(xpath="(//button[contains(@class,'VfPpkd')])[2]")
+	//	@FindBy(xpath="(//div[contains(@class,'XGLVqf')]//div[@jsname='s3Eaab'])[3]")
+		@FindBy(xpath="(//button[contains(@class,'VfPpkd-Bz112c')])[4]")
+		WebElement clckSetngBtn;
+		
+		//@FindBy(xpath="'(//div[@class='VfPpkd-VRSVNe'])[3]")
+		//@FindBy(xpath="//button[@jsname='llfBcf']")
+		//@FindBy(xpath="(//div[contains(@class,'QRiHXd')]/button/div[contains(@class,'VfPpkd')]/div)[2]")
+		@FindBy(xpath="(//div[@class='VfPpkd-lw9akd'])[3]")
+		WebElement btnDelteditems;
+		
+		@FindBy(xpath="(//div[contains(@class,'VfPpkd')]//span[text()='Save'])[1]")
+		WebElement btnSave;
+		
+		@FindBy(xpath="(//a[text()='People'])[1]")
+		WebElement lnkpeople;
+		
+		@FindBy(xpath="(//div[contains(@class,'pEwOBc')])[2]//div[text()='Invite students']")
+		WebElement btnInviteFrnds;
+		
+		@FindBy(xpath="//span[contains(text(),'Type a name')]")
+		WebElement txt_typeEmail;
+		
+		@FindBy(xpath="//div[@class='uy8S0e']")
+		WebElement slcemail;
+		
+		@FindBy(xpath="//span[text()='Invite']")
+		WebElement clckInvite;
+		
+		@FindBy(xpath="(//div[@class='VfPpkd-lw9akd'])[3]")
+		WebElement toggleBtnEle1;
+		
+		/*farhana
+		 * text on Announce Something and post it
+		 */
+		public void announceTypeSomething() throws Exception {
+			JavascriptExecutor j = (JavascriptExecutor)driver;
+	        if (j.executeScript("return document.readyState").toString().equals("complete")){
+	           System.out.println("Announce Page has loaded");
+	        }
+	        else {
+	        	   System.out.println("Announce Page has not loaded");
+	        }
+	        Actions a =new Actions(driver);
+	        a.doubleClick(lnkAnnouceClasss).build().perform();
+	        Thread.sleep(3000);
+		//JavascriptExecutor js = (JavascriptExecutor)driver;
+			//js.executeScript("arguments[0].value='Hi Team Hope you are doing well' ", txtAnnouceClasss);
+			  boolean isElmtDisplayeed=txtAnnouceClasss.isDisplayed();
+		       Assert.assertTrue(isElmtDisplayeed);
+				txtAnnouceClasss.sendKeys("hi Team, Hope you are doing well");
+			Thread.sleep(3000);
+			boolean isElmntEnabled=driver.findElement(By.xpath("//div[contains(@guidedhelpid,'ScheduleDrop')]")).isEnabled();
+		      Assert.assertTrue(isElmntEnabled);
+			btpostdropdown.click();
+			Thread.sleep(1000);
+		}
+		
+		/*farhana
+		 * function to select date and Time 
+		 */
+		public void scheduleDatendTime() throws Exception {
+			Thread.sleep(5000);
+			btnSchedule.click();
+			Thread.sleep(2000);	
+			 Actions a=new Actions(driver);
+			 a.doubleClick(btnforClander).build().perform();
+			Thread.sleep(2000);
+			btnNxtMont.click();
+			Thread.sleep(2000);
+			slectDate.click();
+			Thread.sleep(2000);
+			slectTime.click();
+			Thread.sleep(2000);
+			slectSchedulebtn.click();
+		}
+		
+		public void showDeletedItems() throws Exception {
+			Thread.sleep(3000);
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].click();", clckSetngBtn);
+		      Actions a=new Actions(driver);
+		     // a.doubleClick(clckSetngBtn).build().perform();
+		boolean isElmtDisplayeed=driver.findElement(By.xpath("(//div[@class='VfPpkd-lw9akd'])[3]")).isEnabled();
+		    Assert.assertTrue(isElmtDisplayeed);
+			//	js.executeScript("arguments[0].click();", btnDelteditems);
+		     a.doubleClick(btnDelteditems).build().perform();
+		     a.moveByOffset(0, 0)
+				Thread.sleep(3000);
+		        a.doubleClick(btnSave).build().perform();
+				Thread.sleep(3000);
+		        a.doubleClick(lnkpeople).build().perform();
+		}
+		
+		public void inviteStudents() throws Exception {
+			lnkpeople.click();
+			Thread.sleep(3000);
+			btnInviteFrnds.click();
+			Thread.sleep(3000);
+			txt_typeEmail.sendKeys("farhabegum015@gmail.com");
+		      Actions a=new Actions(driver);
+             a.doubleClick(slcemail).build().perform();
+ 			boolean isElmntEnabled=driver.findElement(By.xpath("'//span[text()='Invite']")).isEnabled();
+		      Assert.assertTrue(isElmntEnabled);
+		      clckInvite.click();
+		      System.out.println("Student is invited");
+		}
+
+
+}

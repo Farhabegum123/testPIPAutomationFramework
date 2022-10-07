@@ -1,0 +1,73 @@
+package basePackage;
+
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeSuite;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
+
+public class BaseClass {
+	
+	ExtentReports report; 
+	ExtentSparkReporter spark;
+	ExtentTest Test;
+	 public WebDriver driver;
+
+	  @BeforeSuite
+	 public void openBrowser() throws Exception {
+	     System.setProperty("webdriver.chrome.driver","C:\\Users\\farhana.begum\\pip_workSpace\\pipAssignmentsProject\\drivers\\chromedriver.exe");
+		 driver=new ChromeDriver();
+		 driver.manage().window().maximize();	 
+	 }
+	  
+	  public void exreportopen()
+	    {
+		     report= new ExtentReports();
+			 spark=new ExtentSparkReporter(System.getProperty("user.dir") + "/test-results/googleClass.html");
+			 report.attachReporter(spark);
+			 Test=report.createTest("Google Class room Meeting functionality testing");
+	    }
+	 
+	    public static String getScreenshot(WebDriver driver) throws Exception
+		{
+	    	   TakesScreenshot ts=(TakesScreenshot)driver;
+			   File src=ts.getScreenshotAs(OutputType.FILE);	  
+			   String path=System.getProperty("user.dir") + "/Screenshots/"+System.currentTimeMillis()+".png";
+			   File finalDest=new File(path); 
+			   FileUtils.copyFile(src, finalDest);
+			   return path;
+			   
+	    }
+	    public void amazonSettngPageOpen(WebDriver driver) throws Exception
+		{	String temp=getScreenshot(driver); 		
+				Test.pass("Amazon Setting Page Open",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+		}
+	    
+	    public void amazonSettngPagenotOpen(WebDriver driver) throws Exception {
+	    	String temp=getScreenshot(driver);
+			Test.fail("Amazon Setting Page not Open",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	  
+	    public void countryChangeIndia(WebDriver driver) throws Exception
+	 		{	String temp=getScreenshot(driver); 		
+	 				Test.pass("Country Change to India",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	 		}
+	 	    
+	    public void countryNotChangeIndia(WebDriver driver) throws Exception {
+	    	String temp=getScreenshot(driver);
+			Test.fail("Country Change to not India",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	  
+	  
+	  
+
+}

@@ -1,0 +1,181 @@
+package baseClassPackage;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
+import junit.framework.Assert;
+import pages.GClassHomePage;
+import pages.GoogleHomePage;
+import pages.SignInPage;
+
+public class BaseClass {
+	
+	public  static WebDriver driver;
+	ExtentReports report; 
+	ExtentSparkReporter spark;
+	ExtentTest Test;
+	
+	
+	@BeforeSuite
+//	public void genrateReport() throws Exception 
+		 public void openBrowser() throws Exception {
+	  System.setProperty("webdriver.chrome.driver","C:\\Users\\farhana.begum\\pip_workSpace\\com.AutomationFrameworkAssesmnt\\drivers\\chromedriver.exe");
+		 driver=new ChromeDriver();
+		 driver.manage().window().maximize();
+	}
+	  
+	
+	 public void exreportopen()
+	    {
+		     report= new ExtentReports();
+			 spark=new ExtentSparkReporter(System.getProperty("user.dir") + "/test-results/googleClass.html");
+			 report.attachReporter(spark);
+			 Test=report.createTest("Google Class room Meeting functionality testing");
+	    }
+	 
+	    public static String getScreenshot(WebDriver driver) throws Exception
+		{
+	    	   TakesScreenshot ts=(TakesScreenshot)driver;
+			   File src=ts.getScreenshotAs(OutputType.FILE);	  
+			   String path=System.getProperty("user.dir") + "/Screenshots/"+System.currentTimeMillis()+".png";
+			   File finalDest=new File(path); 
+			   FileUtils.copyFile(src, finalDest);
+			   return path;	
+	    }
+	    public void googleClassPageOpen(WebDriver driver) throws Exception
+		{try {
+			String temp=getScreenshot(driver); 		
+			Test.pass("Google Class Page Open",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+			}
+	    		
+		}
+	    
+	    public void googleclassMeetingnotOpen(WebDriver driver) throws Exception {
+	    	String temp=getScreenshot(driver);
+			Test.fail("Google Class Page not Open",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	    
+	    public void entervalidEmailId(WebDriver driver) throws Exception {
+	    	String temp=getScreenshot(driver); 		
+			Test.pass("Email Id Entered",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	    
+	    public void entervalidPassword(WebDriver driver) throws Exception {
+	    	String temp=getScreenshot(driver); 		
+			Test.pass("Password Entered",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	   
+	    public void unabletoEnterEmailCren(WebDriver driver) throws Exception {
+	    	String temp=getScreenshot(driver); 		
+			Test.fail("Email Id and Password unable Entered ",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	   
+	    public void googleClassroom(WebDriver driver) throws Exception {
+	    	String temp=getScreenshot(driver);
+			Test.pass("Google Classroom Page Open",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	    
+	    public void googleClassroomnotOpen(WebDriver driver) throws Exception {
+	    	String temp=getScreenshot(driver);
+			Test.fail("Google Classroom Page not Open",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	    
+	    public void createClassFields(WebDriver driver) throws Exception {
+	    	String temp=getScreenshot(driver); 		
+			Test.pass("Enter class fileds and create a class",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	    
+	    public void unabletocreateClassFields(WebDriver driver) throws Exception {
+	    	String temp=getScreenshot(driver); 		
+			Test.fail("Unable to Enter class fileds and create a class",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	    
+	    public void verifyClassName(WebDriver driver) throws Exception {
+	    	String temp=getScreenshot(driver); 		
+			Test.pass("verify Class Name in the class room meeting page",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	   
+	    public void unableVerifyClassName(WebDriver driver) throws Exception {
+	    	String temp=getScreenshot(driver); 		
+			Test.pass("unable to verify Class Name in the class room meeting page",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	    
+	    public void anounceTypeSomethingtoClass(WebDriver driver) throws Exception{
+	    	String temp=getScreenshot(driver); 		
+			Test.pass("Announce and Type something to Class in the class room meeting page",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	    
+	    public void notableanounceTypeSomethingtoClass(WebDriver driver) throws Exception{
+	    	String temp=getScreenshot(driver); 		
+			Test.fail("unable to announce and Type something to Class in the class room meeting page",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	    
+	    public void abletoScheduleDatendTime(WebDriver driver) throws Exception{
+	    	String temp=getScreenshot(driver); 		
+			Test.pass("Able to schedule date and Time",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	    public void notabletoScheduleDatendTime(WebDriver driver) throws Exception{
+	    	String temp=getScreenshot(driver); 		
+			Test.fail("Unable to schedule date and Time",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	    
+	    public void showDeletedItemsLnks(WebDriver driver)  throws Exception{
+	    	String temp=getScreenshot(driver); 		
+			Test.pass("show deleted items",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	    
+	    
+	    public void inviteStudentspage(WebDriver driver)  throws Exception{
+	    	String temp=getScreenshot(driver); 		
+			Test.pass("show deleted items",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	    
+	    public void studentsNotInvited(WebDriver driver)  throws Exception{
+	    	String temp=getScreenshot(driver); 		
+			Test.fail("students unable to invite",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	    }
+	    
+	    
+	    public void googleClassnotClick(WebDriver driver) throws Exception
+		{
+	        	String temp=getScreenshot(driver);
+				Test.fail("Google Class meeting not scheduled",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+		}
+	   
+	    public void exreportclose()
+	    {
+	    	report.flush();
+	    }
+		
+
+	  
+	@AfterSuite
+	 public void closeBrowser() {
+		 driver.quit();
+	 }
+
+}

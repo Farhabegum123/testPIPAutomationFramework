@@ -1,0 +1,55 @@
+package testRunnerPackage;
+
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
+public class ExtentReport
+{
+
+	ExtentReports report; 
+	ExtentSparkReporter spark;
+	ExtentTest Test;
+	WebDriver driver;
+    public void exreportopen()
+    {
+	     report= new ExtentReports();
+		 spark=new ExtentSparkReporter(System.getProperty("user.dir") + "/test-results/UnsecureAppRemove.html");
+		 report.attachReporter(spark);
+		 Test=report.createTest("RedGreen Unsecure apps removing functionality testing");
+    }
+    public void exreportclose()
+    {
+    	report.flush();
+    }
+    public static String getScreenshot(WebDriver driver) throws Exception
+	{
+    	   TakesScreenshot ts=(TakesScreenshot)driver;
+		   File src=ts.getScreenshotAs(OutputType.FILE);	  
+		   String path=System.getProperty("user.dir") + "/Screenshots/"+System.currentTimeMillis()+".png";
+		   File finalDest=new File(path); 
+		   FileUtils.copyFile(src, finalDest);
+		   return path;	
+    }
+    public void googleClassMeeting(WebDriver driver) throws Exception
+	{
+    		Test.pass("Google class Meeting Scheduled Sucessfully");
+	}
+   
+    public void googleClassnotClick(WebDriver driver) throws Exception
+	{
+        	String temp=getScreenshot(driver);
+			Test.fail("App Manager option not exist - some internal error",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+	}
+   
+	
+
+}

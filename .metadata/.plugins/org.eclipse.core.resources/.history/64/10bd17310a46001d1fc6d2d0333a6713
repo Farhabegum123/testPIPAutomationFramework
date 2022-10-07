@@ -1,0 +1,13 @@
+package pages;
+
+public class AmazonHomePage 
+{
+	 public WebDriver driver;
+		
+		public AmazonHomePage(WebDriver driver) {
+			this.driver=driver;
+			PageFactory.initElements(driver,this);
+		}
+		
+
+}

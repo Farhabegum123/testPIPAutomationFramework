@@ -1,0 +1,21 @@
+package pages;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class StudentLoginPage 
+{
+	@FindBy(name = "identifier")
+	WebElement emailId;
+
+	@FindBy(xpath = "//*[text()='Next']")
+	WebElement emailNext;
+
+	@FindBy(xpath = "//*[@name='Passwd']")
+	WebElement psdfld;
+ 
+	@FindBy(xpath = "//*[text()='Next']")
+	WebElement pswrdNext;
+
+
+}

@@ -1,0 +1,60 @@
+package testRunnerPacakge;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import basePackage.BaseClass;
+import pages.AmazonHomePage;
+import pages.AmazonSettingPage;
+import pages.CartPage;
+
+public class TestRunner extends BaseClass {
+	@Test
+	public void amzonTest() throws Exception {
+		AmazonSettingPage amznSttngpage = new AmazonSettingPage(driver);
+		AmazonHomePage amznHomepge = new AmazonHomePage(driver);
+		CartPage cartPage = new CartPage(driver);
+		try {
+			driver.get("https://www.amazon.com/");
+			String title = driver.getTitle();
+			System.out.println(title);
+			Assert.assertEquals(title, "Amazon.com. Spend less. Smile more.");
+			try {
+				amznSttngpage.changeCountrylange();
+				countryChangeIndia(driver);
+				amznSttngpage.changeCountry();
+				countryChangeIndia(driver);
+				amznSttngpage.getWindowHandle();
+				countryChangeIndia(driver);
+				try {
+					amznHomepge.searchProduct();
+					searchAndClckProdcut(driver);
+					amznHomepge.getListProducts();
+					amznHomepge.clickonProduct();
+					searchAndClckProdcut(driver);
+					amznHomepge.getWindowsHandles();
+					try {
+						cartPage.addProductndVerify();
+						productAddCart(driver);
+						cartPage.shoppingCart();
+						shoppingCartPage(driver);
+						System.out.println("Successfully product added to the cart");
+					} catch (Exception ex) {
+						System.out.println("Unable to add product to the cart");
+						productnotAddCart(driver);
+					}
+				} catch (Exception e) {
+					System.out.println("Unable to search product and select  the product");
+					searchAndProdcutnotClck(driver);
+				}
+			} catch (Exception e) {
+				System.out.println("Unable to change the country");
+				countryNotChangeIndia(driver);
+			}
+		} catch (Exception ex) {
+			System.out.println("Unable to get the title of the page");
+			amazonSettngPagenotOpen(driver);
+		}
+
+	}
+}

@@ -1,0 +1,24 @@
+package baseClassPackage;
+
+import java.awt.GraphicsConfiguration;
+import java.awt.Rectangle;
+
+import org.monte.media.Format;
+import org.monte.screenrecorder.ScreenRecorder;
+
+public class ScreenRecordUtil extends ScreenRecorder
+{
+ 
+	public static ScreenRecorder screenrecorder;
+	public String name;
+	
+	public ScreenRecordUtil(GraphicsConfiguration cfg,Rectangle captureArea, Format fileFormat,
+			Format screenFormat, Format mouseFormat, Format audioFormat, File movieFolder, String name)
+	throws IOException, AWTException{
+		super(cfg, captureArea, fileFormat,screenFormat,mouseFormat,audioFormat,movieFolder);
+		this.name=name;
+	}
+	
+	
+	
+}

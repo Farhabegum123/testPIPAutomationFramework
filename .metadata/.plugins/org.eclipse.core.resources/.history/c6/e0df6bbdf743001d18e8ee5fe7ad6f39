@@ -1,0 +1,55 @@
+package pages;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class PeoplePage {
+
+	 public static WebDriver driver;
+
+		
+		public PeoplePage(WebDriver driver) {
+			 this.driver=driver;
+			PageFactory.initElements(driver,this);
+		}
+		
+		@FindBy(xpath="(//a[text()='People'])[1]")
+		WebElement lnkpeople;
+		
+		//@FindBy(xpath="(//div[contains(@class,'pEwOBc')])[2]//div[text()='Invite students']")
+		@FindBy(xpath="(//div[contains(@class,'pEwOBc')]//div[@class='CG2qQ']/span/button/div[@jsname='s3Eaab'])[1]")
+		WebElement btnInviteFrnds;
+		
+		//@FindBy(xpath="//span[contains(text(),'Type a name')]")
+		@FindBy(xpath="(//div[@role='listbox'])[2]")
+		WebElement txt_typeEmail;
+		
+		@FindBy(xpath="//div[@class='uy8S0e']")
+		WebElement slcemail;
+		
+		@FindBy(xpath="(//span[text()='Invite'])[2]")
+		WebElement clckInvite;
+		
+		public void inviteStudents() throws Exception {
+			lnkpeople.click();
+			Thread.sleep(3000);
+       Actions a=new Actions(driver);
+	        a.doubleClick(btnInviteFrnds).build().perform();
+			Thread.sleep(3000);
+			Thread.sleep(3000);
+			JavascriptExecutor js = (JavascriptExecutor)driver;
+		    a.doubleClick(txt_typeEmail).build().perform();
+			  js.executeScript("document.getElementById("(//div[@role='listbox'])[2]").value='farhabegum015@gmail.coms';");
+			//txt_typeEmail.sendKeys("farhabegum015@gmail.com");
+             a.doubleClick(slcemail).build().perform();
+ 		//	boolean isElmntEnabled=driver.findElement(By.xpath("'(//span[text()='Invite'])[2]")).isEnabled();
+		   //   Assert.assertTrue(isElmntEnabled);
+		      clckInvite.click();
+		      System.out.println("Student is invited");
+		}
+
+}

@@ -1,0 +1,65 @@
+package baseClassPackage;
+
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+
+public class Test1 {
+
+	public static WebDriver driver;
+	   
+	public static void main(String[] args) throws Exception {	
+
+		 
+		 System.setProperty("webdriver.chrome.driver","C:\\Users\\farhana.begum\\pip_workSpace\\com.AutomationFrameworkAssesmnt\\drivers\\chromedriver.exe");
+		 driver=new ChromeDriver();
+		 
+		 driver.manage().window().maximize();
+			driver.get("https://classroom.google.com/");
+			Thread.sleep(5000);
+			String title=driver.getTitle();
+			System.out.println(title);
+			driver.findElement(By.xpath("//*[text()='Go']")).click();
+			driver.findElement(By.xpath("(//a[contains(@class,'header__menu')])[1]")).click();
+			WebElement googlelnk=driver.findElement(By.xpath("(//span[text()='Google Classroom'])[1]"));
+			Actions a=new Actions(driver);
+			a.doubleClick(googlelnk).build().perform();
+			  Thread.sleep(5000);
+			  
+				  /**driver.findElement(By.name('identifier')).sendKeys("Farhabegum666@gmail.com");
+	           driver.findElement(By.xpath("//*[text()='Next']")).click();
+	           driver.findElement(By.xpath("//*[@name='Passwd']")).sendKeys("Afsha@786");
+	           driver.findElement(By.xpath("//*[text()='Next']")).click();**/
+			  File dest=new File("C:\\Users\\farhana.begum\\pip_workSpace\\com.AutomationFrameworkAssesmnt\\Screenshot\\page.png");
+				TakesScreenshot src=(TakesScreenshot)driver;
+				File srcsht=src.getScreenshotAs(OutputType.FILE);
+				FileUtils.copyFile(srcsht,dest);
+				//driver.findElement(By.xpath("//button[text()='Reset']")).click();
+
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

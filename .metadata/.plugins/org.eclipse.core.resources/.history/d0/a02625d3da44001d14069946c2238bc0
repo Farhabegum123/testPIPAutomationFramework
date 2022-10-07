@@ -1,0 +1,8 @@
+package baseClassPackage;
+
+import org.monte.screenrecorder.ScreenRecorder;
+
+public class ScreenRecordUtility extends ScreenRecorder
+{
+
+}

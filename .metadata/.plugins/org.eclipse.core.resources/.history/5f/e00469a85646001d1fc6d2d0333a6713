@@ -1,0 +1,43 @@
+package testRunnerPacakge;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import basePackage.BaseClass;
+import pages.AmazonHomePage;
+import pages.AmazonSettingPage;
+import pages.CartPage;
+
+public class TestRunner extends BaseClass
+{
+   @Test
+   public void amzonTest() throws Exception {
+	   AmazonSettingPage amznSttngpage=new AmazonSettingPage(driver);
+		AmazonHomePage amznHomepge=new AmazonHomePage(driver);
+		CartPage cartPage=new CartPage(driver);
+		try {
+			  driver.get("https://www.amazon.com/");
+		       String title=driver.getTitle();
+				System.out.println(title);
+				Assert.assertEquals(title, "Amazon.com. Spend less. Smile more.");
+			try {
+				amznSttngpage.changeCountrylange();
+				countryChangeIndia(driver);
+				amznSttngpage.changeCountry();
+				amznSttngpage.getWindowHandle();
+			}
+		}catch (Exception ex) {
+			System.out.println("Unable to get the title of the page");
+			amazonSettngPagenotOpen(driver);
+		}
+	   
+		
+		amznHomepge.searchProduct();
+		amznHomepge.getListProducts();
+		amznHomepge.clickonProduct();
+		amznHomepge.getWindowsHandles();
+		cartPage.addProductndVerify();
+		cartPage.shoppingCart();
+		
+   }
+}

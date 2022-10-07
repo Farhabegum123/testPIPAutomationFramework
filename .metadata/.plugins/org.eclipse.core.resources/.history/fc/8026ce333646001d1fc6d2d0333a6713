@@ -1,0 +1,29 @@
+package testRunnerPacakge;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import basePackage.BaseClass;
+import pages.AmazonHomePage;
+import pages.AmazonSettingPage;
+
+public class TestRunner extends BaseClass
+{
+   @Test
+   public void amzonTest() throws Exception {
+	   driver.get("https://www.amazon.com/");
+       String title=driver.getTitle();
+		System.out.println(title);
+		Assert.assertEquals(title, "Amazon.com. Spend less. Smile more.");
+		AmazonSettingPage amznSttngpage=new AmazonSettingPage(driver);
+		AmazonHomePage amznHomepge=new AmazonHomePage(driver);
+		amznSttngpage.changeCountrylange();
+		amznSttngpage.changeCountry();
+		amznSttngpage.getWindowHandle();
+		amznHomepge.searchProduct();
+		//amznHomepge.getListProducts();
+		amznHomepge.clickonProduct();
+	//	amznHomepge.getWindowHandle();
+		amznHomepge.getWindowsHandles();
+   }
+}

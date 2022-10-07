@@ -1,0 +1,71 @@
+package pages;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class AmazonHomePage 
+{
+	 public WebDriver driver;
+		
+		public AmazonHomePage(WebDriver driver) {
+			this.driver=driver;
+			PageFactory.initElements(driver,this);
+		}
+		
+		@FindBy(xpath="//span[@class='a-button-inner']/span[contains(text(),'Don')]")
+		WebElement btnDontchnge;
+		
+		@FindBy(xpath="//div[@id='nav-tools']/a/span[contains(@class,'inner')]")
+		WebElement lnkLanguageChange;
+		
+		@FindBy(xpath="(//span[@class='nav-text']//div[contains(text(),'Change country')])[1]")
+		WebElement lnkChangeCountry;
+		
+		@FindBy(xpath="//span[@class='a-button-inner']//span[contains(@class,'dropdown')]")
+		WebElement selectPrefrdCnty;
+		
+		@FindBy(xpath="//div[@class='a-popover-wrapper']//a[text()='India']")
+		WebElement chngtoIndia;
+		
+		//@FindBy(xpath="//i[contains(@class,'dropdown')]")
+		@FindBy(xpath="//span[contains(@class,'declarative')]/span")
+		WebElement drpCurrencySetngs;
+		
+		@FindBy(xpath="//div[contains(@class,'declarative')]//li[@id='INR']")
+		WebElement chngtoIndia;
+		
+		@FindBy(xpath="//span[contains(text(),'Save Changes')]")
+		WebElement btnSaveChanges;
+		
+		public void changeCountry() throws Exception {
+		 Actions a=new Actions(driver);
+		 try {
+		     a.doubleClick(btnDontchnge).build().perform();
+			 System.out.println("dont change btn is visible and clicked");
+		 }
+		 catch(Exception e) {
+			 System.out.println("dont change btn is not visible");
+		 }
+			Thread.sleep(5000);
+			a.moveToElement(lnkLanguageChange).build().perform();
+			a.doubleClick(lnkChangeCountry).build().perform();
+			System.out.println("Clicked on change language");
+		}
+
+		public void changeCountryCurrency() throws Exception {
+			 Actions a=new Actions(driver);
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].click();", drpCurrencySetngs);
+	   //  a.doubleClick(drpCurrencySetngs).build().perform();	
+	     Thread.sleep(1000);
+	     a.doubleClick(chngtoIndia).build().perform();
+	     chngtoIndia.click();
+	     Thread.sleep(3000);
+	     a.doubleClick(btnSaveChanges).build().perform();
+		}
+
+}

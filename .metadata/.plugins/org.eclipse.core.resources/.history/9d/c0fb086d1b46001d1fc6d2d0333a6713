@@ -1,0 +1,31 @@
+package pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import junit.framework.Assert;
+
+public class AmazonHomePage {
+	
+	 public WebDriver driver;
+		
+		public AmazonHomePage(WebDriver driver) {
+			this.driver=driver;
+			PageFactory.initElements(driver,this);
+		}
+		
+		@FindBy(id="twotabsearchtextbox")
+		   WebElement searchbox;
+		   
+		   @FindBy(id="nav-search-submit-button")
+		   WebElement btn_searchbox;
+		   
+		   public void searchProduct() {
+				  boolean isElmtDisplayeed=assignmentCrated.isDisplayed();
+			       Assert.assertTrue(isElmtDisplayeed);
+		   
+		   }
+
+}

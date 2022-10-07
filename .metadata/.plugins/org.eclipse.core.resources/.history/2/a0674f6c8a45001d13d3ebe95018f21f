@@ -1,0 +1,26 @@
+package baseClassPackage;
+
+public class ExcelDataProvider {
+	
+	public static void main(String[] args) {
+		String excelPath="C:\\Users\\farhana.begum\\pip_workSpace\\com.AutomationFrameworkAssesmnt\\excel\\data.xlsx";
+		testData(excelPath,"Sheet1"); 
+	}
+	
+	public static void testData(String excelPath,String sheetName) {
+		
+	//	ExcelUtils excel=new ExcelUtils(excelPath, sheetName);
+		
+		int rowCount=ExcelUtils.getRowCount();
+		int colCount=ExcelUtils.getColumnCount();
+		
+		for(int i=1;i<rowCount;i++) {
+			for(int j=0;j<colCount;i++) {
+				String cellData=ExcelUtils.getCellDataString(i, j);
+				System.out.println(cellData);
+			}
+		}
+
+	}
+
+}

@@ -1,0 +1,11 @@
+package testRunnerPacakge;
+
+import basePackage.BaseClass;
+
+public class TestRunner extends BaseClass
+{
+   @Test
+   public void amzonTest() {
+	   
+   }
+}

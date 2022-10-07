@@ -1,0 +1,45 @@
+package pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class StudentLoginPage 
+{
+	public static WebDriver driver;
+
+	public StudentLoginPage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	@FindBy(name = "identifier")
+	WebElement emailId;
+
+	@FindBy(xpath = "//*[text()='Next']")
+	WebElement emailNext;
+
+	@FindBy(xpath = "//*[@name='Passwd']")
+	WebElement psdfld;
+ 
+	@FindBy(xpath = "//*[text()='Next']")
+	WebElement pswrdNext;
+	
+	public void enterEmailIdandPassword() throws Exception {
+		  System.setProperty("webdriver.chrome.driver","C:\\Users\\farhana.begum\\pip_workSpace\\com.AutomationFrameworkAssesmnt\\drivers\\chromedriver.exe");
+			 driver=new ChromeDriver();
+			 driver.manage().window().maximize();
+		driver.get("https://gmail.com/");
+		emailId.sendKeys("farhabegum015@gmail.com");
+		Thread.sleep(1000);
+		emailNext.click();
+		Thread.sleep(1000);
+		psdfld.sendKeys("Afsha@7863");
+		Thread.sleep(5000);
+		pswrdNext.click();
+		Thread.sleep(5000);
+
+	}
+
+}

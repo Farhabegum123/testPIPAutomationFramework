@@ -1,0 +1,48 @@
+package pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import junit.framework.Assert;
+
+public class CartPage 
+{
+	public WebDriver driver;
+	
+	public CartPage(WebDriver driver) {
+		this.driver=driver;
+		PageFactory.initElements(driver,this);
+	}
+	
+	@FindBy(xpath="//input[@id='add-to-cart-button']")
+	WebElement btnAddtoCart;
+	
+	@FindBy(xpath="//span[contains(@class,'medium-plus')]")
+	WebElement verifyAddedCart;
+	
+	@FindBy(xpath="//div[contains(@class,'a-row')]//form//span[contains(text(),'Cart')]")
+	WebElement btnCart;
+	
+	@FindBy(xpath="(//span[@class='a-truncate-cut'])[5]")
+	WebElement lnkProductTxt;
+	
+	 public void addProductndVerify() {
+		 btnAddtoCart.click();
+		 Thread.sleep(1000);
+		 
+	 }
+		 
+	 public void 
+		 boolean isElmtDisplayeed=searchbox.isDisplayed();
+			  Assert.assertTrue(isElmtDisplayeed);
+			  searchbox.sendKeys("samsung s22");
+			  btn_searchbox.click();
+			  System.out.println("Samsung product is been successfully selected");
+		   }
+		   
+	
+	
+	
+}

@@ -1,0 +1,76 @@
+package pages;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import junit.framework.Assert;
+
+public class AmazonHomePage {
+	
+	 public WebDriver driver;
+		
+		public AmazonHomePage(WebDriver driver) {
+			this.driver=driver;
+			PageFactory.initElements(driver,this);
+		}
+		
+		@FindBy(id="twotabsearchtextbox")
+		   WebElement searchbox;
+		   
+		   @FindBy(id="nav-search-submit-button")
+		   WebElement btn_searchbox;
+		   
+		   @FindBy(xpath="//div[contains(@class,'title-instructions')]/h2")
+		   List<WebElement> lst_products;
+		   
+		   @FindBy(xpath="(//h2[contains(@class,'color-base')])[1]")
+		   WebElement lnkFirstProduct;
+		   
+		   public void searchProduct() {
+			boolean isElmtDisplayeed=searchbox.isDisplayed();
+			  Assert.assertTrue(isElmtDisplayeed);
+			  searchbox.sendKeys("samsung s22");
+			  btn_searchbox.click();
+			  System.out.println("Samsung product is been successfully selected");
+		   }
+		   
+		   public void getListProducts() {
+			   for(WebElement productList: lst_products) {
+				   System.out.println(productList.getText());
+		   }
+		   }
+		   
+		   public void clickonProduct() {
+			   lnkFirstProduct.click();
+		   }
+		   
+			public void getWindowHandle() throws Exception {
+				Set<String> windowsIds = driver.getWindowHandles();
+				Iterator<String> it = windowsIds.iterator();
+				String childId = it.next();
+				String childId1 = it.next();
+				driver.switchTo().window(childId);
+				System.out.println("Parent window id:" +parentId);
+				System.out.println("Child window title: " + driver.getTitle());
+				driver.switchTo().window(childId1);
+				System.out.println("Sub Child window title: " + driver.getTitle());
+				driver.switchTo().window(childId1);
+				Thread.sleep(3000);
+			}
+			
+			public void getWindowsHandles() {
+				Set<String> windowIDs=driver.getWindowHandles();
+				List<String> windowIdsList=new ArrayList();
+				
+		//		String parentWindowIds=windowIdsList.get(0);
+				String childWindowids=windowIdsList.get(1);
+				String subchildWindowids=windowIdsList.get(2);
+			}
+}

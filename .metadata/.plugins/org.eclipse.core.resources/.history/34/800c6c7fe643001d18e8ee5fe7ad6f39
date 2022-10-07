@@ -1,0 +1,22 @@
+package testRunnerPackage;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import baseClassPackage.BaseClass;
+import pages.GClassHomePage;
+import pages.GoogleHomePage;
+import pages.SignInPage;
+import pages.classroomPage;
+
+public class Runner extends BaseClass
+{
+	@Test
+	public void googleTest() throws Exception {;
+		classroomPage classrompage=new classroomPage(driver);
+		
+			driver.get("https://classroom.google.com/");
+	         String title=driver.getTitle();
+			System.out.println(title);
+			Assert.assertEquals(title, "Classroom Management Tools & Resources - Google for Education");
+}
