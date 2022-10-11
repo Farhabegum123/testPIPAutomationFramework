@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="audio"/>
+		<item key="selection" value=""/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="inviteStudents"/>
+			<item value="emailId"/>
+			<item value="exreportclose"/>
+			<item value="exreportopen"/>
+			<item value="testng"/>
+			<item value="//div[contains(@class,&apos;a-row&apos;)]//form//span[contains(text(),&apos;Cart&apos;)]]"/>
 			<item value="Audio"/>
 			<item value="createClassFields"/>
 			<item value="googleClassnotClick"/>
@@ -17,8 +23,6 @@
 			<item value="extent"/>
 			<item value="clckcheckbox"/>
 			<item value="createClass"/>
-			<item value="//input[@jsname=&apos;YPqjbf&apos;]"/>
-			<item value=" psdbtn"/>
 		</list>
 		<list key="replacehistory">
 		</list>

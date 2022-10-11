@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\farhana.begum\pip_workSpace\com.AutomationFrameworkAssesmnt"/>
 			<item value="C:\Users\farhana.begum\pip_workSpace\pipAssignmentsProject\src\test\java"/>
 			<item value="C:\Users\farhana.begum\pip_workSpace\com.AutomationFrameworkAssesmnt\src\test\java\pages\ClassroomPage.java"/>
 		</list>
@@ -27,10 +28,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="testPipAutomationFramework.testPipAutomationFrameworks"/>
 		</list>
 		<list key="groupId">
+			<item value="testPipAutomationFramework"/>
 		</list>
 		<list key="artifactId">
+			<item value="testPipAutomationFrameworks"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
