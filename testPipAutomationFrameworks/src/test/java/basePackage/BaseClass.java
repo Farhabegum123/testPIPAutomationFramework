@@ -31,7 +31,15 @@ public class BaseClass {
 	
 	  
          @BeforeTest
-	     @Parameters("browserName")
+         public void openSetUp() throws Exception{
+        	 System.setProperty("webdriver.chrome.driver","C:\\Users\\farhana.begum\\pip_workSpace\\testPipAutomationFrameworks\\drivers\\chromedriver.exe");
+				 driver=new ChromeDriver();
+				 driver.manage().window().maximize();
+	
+         }
+            
+         
+	    /**@Parameters("browserName")
         public void openBrowser(String browserName) throws Exception {
             System.out.println("Browser  Name is:  "+ browserName);
 			if(browserName.equals("chrome")){
@@ -44,17 +52,27 @@ public class BaseClass {
 		     driver=new EdgeDriver();
 		          driver.manage().window().maximize();
 			}
-	}
+	}**/
+         
+        /** public void openBrowser(String browserName) throws Exception {
+             System.out.println("Browser  Name is:  "+ browserName);
+ 				   System.setProperty("webdriver.chrome.driver","C:\\Users\\farhana.begum\\pip_workSpace\\testPipAutomationFrameworks\\drivers\\chromedriver.exe");
+ 					 driver=new ChromeDriver();
+ 					 driver.manage().window().maximize();
+ 			}**/
 	
-	public void exreportopen()
+	
+	  
+	   
+	 public void exreportopen()
 	    {
 		     report= new ExtentReports();
-			 spark=new ExtentSparkReporter(System.getProperty("user.dir") + "/test-results/googleClass.html");
+			 spark=new ExtentSparkReporter(System.getProperty("user.dir") + "/test-results/regstrProfileIrctc.html");
 			 report.attachReporter(spark);
-			 Test=report.createTest("Google Class room Meeting functionality testing");
+			 Test=report.createTest("Registration Profile IRCTC functionality testing");
 	    }
 	 
-	 public static String getScreenshot(WebDriver driver) throws Exception
+	    public static String getScreenshot(WebDriver driver) throws Exception
 		{
 	    	   TakesScreenshot ts=(TakesScreenshot)driver;
 			   File src=ts.getScreenshotAs(OutputType.FILE);	  
@@ -64,26 +82,25 @@ public class BaseClass {
 			   return path;
 			   
 	    }
-	    public void googleClassPageOpen(WebDriver driver) throws Exception
+	    public void registrationProfilePageOpen(WebDriver driver) throws Exception
 		{
 	    		String temp=getScreenshot(driver); 		
-				Test.pass("Google Class Page Open",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+				Test.pass("Registration Profile Page Open",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
 		}
-	    
-	    public void googleclassMeetingnotOpen(WebDriver driver) throws Exception {
+    
+	    public void registrationProfilePagenotOpen(WebDriver driver) throws Exception {
 	    	String temp=getScreenshot(driver);
-			Test.fail("Google Class Page not Open",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+			Test.fail("Registration Profile Page not able Open",MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
 	    }
+	   
+		@AfterTest
+		 public void closeBrowser()  {
+			 driver.close();
+			 System.out.println("Test completed Successfully");
+		 }
 	    
-	
-	    public void exreportclose()
-	    {
-	    	report.flush();
-	    }
-	    
-	@AfterTest
-	 public void closeBrowser()  {
-		 driver.close();
-		 System.out.println("Test completed Successfully");
-	 }
+		  public void exreportclose()
+		    {
+		    	report.flush();
+		    }
 }
