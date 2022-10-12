@@ -13761,3 +13761,11 @@ Caused by: org.codehaus.plexus.util.xml.pull.XmlPullParserException: Unrecognise
 2022-10-12 11:43:27,409 [Worker-80: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\farhana.begum\pip_workSpace\com.AutomationFrameworkAssesmnt\src\main\resources
 2022-10-12 11:43:27,410 [Worker-80: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2022-10-12 11:43:27,410 [Worker-80: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\farhana.begum\pip_workSpace\com.AutomationFrameworkAssesmnt\src\test\resources
+2022-10-12 11:49:48,714 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-10-12 11:49:48,714 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\farhana.begum\pip_workSpace\com.AutomationFrameworkAssesmnt\src\main\resources
+2022-10-12 11:49:48,715 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-10-12 11:49:48,715 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\farhana.begum\pip_workSpace\com.AutomationFrameworkAssesmnt\src\test\resources
+2022-10-12 11:49:48,736 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-10-12 11:49:48,736 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\farhana.begum\pip_workSpace\testPipAutomationFrameworks\src\main\resources
+2022-10-12 11:49:48,737 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-10-12 11:49:48,738 [Worker-86: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\farhana.begum\pip_workSpace\testPipAutomationFrameworks\src\test\resources
