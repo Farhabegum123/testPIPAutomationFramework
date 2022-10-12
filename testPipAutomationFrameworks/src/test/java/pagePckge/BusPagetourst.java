@@ -60,7 +60,7 @@ public static WebDriver driver;
 		Actions a=new Actions(driver);
 		Thread.sleep(3000);
 	btnGongTo.sendKeys("Goa");
-	Thread.sleep(1000);
+	Thread.sleep(3000);
 //	a.doubleClick(btnGoa).build().perform();
 //	a.moveToElement(btnGoa).build().perform();
 	btnGoa.click();
@@ -81,6 +81,7 @@ public static WebDriver driver;
 		Thread.sleep(1000);
 		btnSearchBox.click();
 		System.out.println("Search Box selected");
+		Thread.sleep(3000);
 	}
 	
 	
@@ -88,10 +89,11 @@ public static WebDriver driver;
    //  String text= driver.findElement(By.xpath("//*[text()='We have got 37 results']")).getText();
    //  String text=driver.findElement(By.xpath("((//div[@class='container-fluid'])[2]//div[contains(@class,'heading')])[6]")).getText();
   //   WebElement text=driver.findElement(By.xpath("//h3[text()='We have got 37 results']"));
+     //    String text=driver.findElement(By.xpath("((//div[@class='container-fluid'])[2]//div[contains(@class,'heading')])[6]/h3")).getText();
      
-     String text=driver.findElement(By.xpath("((//div[@class='container-fluid'])[2]//div[contains(@class,'heading')])[6]/h3")).getText();
-     System.out.println(text);
-		String txt2="We have got 37 results";
+		String text=driver.findElement(By.xpath("//div//h3[contains(text(),'We have got')]")).getText();
+		System.out.println(text);
+		String txt2="We have got 38 results";
 		if(text.equals(txt2)) {
 			System.out.println("We have got results");
 		}
